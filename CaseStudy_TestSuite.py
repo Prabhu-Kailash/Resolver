@@ -7,17 +7,21 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 
-def print_numbers():
-    for i in range(1, 101):
-        if i % 3 == 0 and i % 5 == 0:
-            print("Resolver")
-        elif i % 3 == 0:
-            print("MThree")
-        elif i % 5 == 0:
-            print("MFive")
-        else:
-            print(i)
+class Shape:
 
+    def __init__(self, width, height) -> None:
+        self._width = width
+        self._height = height
+            
+class Rectangle(Shape):
+
+    def area(self):
+        return self._width * self._height
+
+class Triangle(Shape):
+
+    def area(self):
+        return (self._width * self._height) / 2
 
 class ResolverCaseStudy(unittest.TestCase):
 
@@ -86,7 +90,29 @@ class ResolverCaseStudy(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
+def print_numbers():
+    for i in range(1, 101):
+        if i % 3 == 0 and i % 5 == 0:
+            print("Resolver")
+        elif i % 3 == 0:
+            print("MThree")
+        elif i % 5 == 0:
+            print("MFive")
+        else:
+            print(i)
+
+
 if __name__ == '__main__':
 
-    # unittest.main(verbosity=2)
+    # Test 1 - 4
+    unittest.main(verbosity=2)
+
+    # Test 5
     print_numbers()
+
+    # Test 6
+    triangle = Triangle(2, 5)
+    rectangle = Rectangle(5, 3)
+
+    print(rectangle.area())
+    print(triangle.area())
